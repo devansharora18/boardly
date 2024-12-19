@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Report = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [filter, setFilter] = useState("All");
   const navigate = useNavigate();
 
   const papers = [
@@ -11,9 +12,11 @@ export const Report = () => {
     { id: 3, title: "chem PYQ", status: "Failed", action: "Reupload", route: "/eval/chemistry" },
   ];
 
-  const filteredPapers = papers.filter((paper) =>
-    paper.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredPapers = papers.filter((paper) => {
+    const matchesSearch = paper.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesFilter = filter === "All" || paper.status === filter;
+    return matchesSearch && matchesFilter;
+  });
 
   const handlePaperClick = (route) => {
     navigate(route);
@@ -23,7 +26,10 @@ export const Report = () => {
     <div>
       <div className="container mx-auto min-w-[70vw] p-6 rounded-lg">
         <h1 className="text-xl font-semibold mb-6">Choose your paper for evaluation</h1>
+
+        {/* Search Bar and Filters */}
         <div className="flex items-center justify-between mb-6">
+          {/* Search Bar */}
           <input
             type="text"
             placeholder="Search by title"
@@ -31,13 +37,26 @@ export const Report = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex-1 p-2 border bg-inherit border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-          <button
-            onClick={() => setSearchQuery("")}
-            className="ml-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow hover:bg-blue-600"
+					</div>
+
+					<div>
+
+          {/* Filters */}
+          <select
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="ml-4 p-2 border bg-inherit border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            Clear
-          </button>
+            <option value="All">All</option>
+            <option value="Completed">Completed</option>
+            <option value="Pending">Pending</option>
+            <option value="Failed">Failed</option>
+          </select>
+
+      
         </div>
+
+        {/* Papers List */}
         <div>
           {filteredPapers.length > 0 ? (
             filteredPapers.map((paper) => (
