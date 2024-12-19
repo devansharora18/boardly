@@ -15,7 +15,6 @@ export const Evaluation = () => {
 
   return (
     <div className="container mx-auto min-w-[70vw] p-6 rounded-lg">
-      {/* Header */}
       <div className="mb-4">
         <h1 className="text-2xl font-bold">Evaluation Report</h1>
       </div>
@@ -55,20 +54,13 @@ export const Evaluation = () => {
         </button>
       </div>
 
-      <div className="bg-gray-100 p-4 rounded-lg mb-6">
+      <div className="p-4 rounded-lg mb-6">
         {questions.map((question) => (
           <div
             key={question.id}
-            className="flex items-center justify-between py-2 px-4 mb-2 bg-white shadow rounded-md"
+            className="flex items-center justify-between py-2 px-4 mb-2 rounded-md"
           >
             <span className="font-medium">{question.title}</span>
-            <span>
-              {question.status === "viewed" ? (
-								<img src="eye.svg" alt="Viewed" />
-              ) : (
-								<img src="redeye.svg" alt="Pending" />
-              )}
-            </span>
             <span className="font-medium">{question.marks}</span>
           </div>
         ))}

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Report = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate(); // Hook for programmatic navigation
+  const navigate = useNavigate();
 
   const papers = [
     { id: 1, title: "physics PYQ", status: "Pending", action: "Upload", route: "/eval/physics" },

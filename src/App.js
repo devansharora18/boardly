@@ -11,7 +11,7 @@ const Router = createRouter([
     element: (
       <>
         <Navbar />
-        <div className="h-[91vh] bg-rose-50">
+        <div className="min-h-[91vh] bg-rose-50">
           <Home />
           <BottomBar />
         </div>
@@ -23,7 +23,7 @@ const Router = createRouter([
     element: (
       <>
         <Navbar />
-        <div className="h-[91vh] bg-rose-50">
+        <div className="min-h-[91vh] bg-rose-50">
           <Report />
           <BottomBar />
         </div>
@@ -35,7 +35,7 @@ const Router = createRouter([
 		element: (
 			<>
 				<Navbar />
-				<div className="h-[91vh] bg-rose-50">
+				<div className="min-h-[91vh] bg-rose-50">
 					< Evaluation/>
 					<BottomBar />
 				</div>
